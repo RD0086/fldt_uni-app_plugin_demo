@@ -1,3 +1,6 @@
+/**
+ * 实名认证
+ */
 <template>
 	<view>
 		<form @submit="formSubmit">

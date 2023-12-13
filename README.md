@@ -1,5 +1,5 @@
 ## 概述
-Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，前后端结合，确保活体检测结果安全可靠。(***可用于实人认证，刷脸认证，活体检测等场景***，SDK不联网)
+Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，前后端结合，确保活体检测结果安全可靠。(***可用于实人认证，刷脸认证，活体检测等场景***)
 
 ## 演示视频
 ![](http://open.esandcloud.com/index.php/s/78XA91wLQV2y36B/download)
@@ -9,7 +9,7 @@ Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，
 #### android 调用初始化
 ```java
 /**
- * SDK初始化。为了提升性能，建议在在application提前调用，否则获取token时间会比较长
+ * SDK初始化。为了提升性能，建议在在application提前调用，否则获取token时间会比较长 （可选）
  */
 LivingDetectionModule.Init();
 ```
