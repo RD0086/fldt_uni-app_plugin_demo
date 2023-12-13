@@ -1,7 +1,6 @@
 ## 概述
 Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，前后端结合，确保活体检测结果安全可靠。(***可用于实人认证，刷脸认证，活体检测等场景***，SDK不联网)
 
-DEMO可参考开源项目：https://code.aliyun.com/os_esand/uni-efaceid-main?spm=a2111a.8458726.0.0.6c6c3531zqINvt
 ## 演示视频
 ![](http://open.esandcloud.com/index.php/s/78XA91wLQV2y36B/download)
 
@@ -73,15 +72,14 @@ LivingDetectionModule.startLivingDetect(options, callback);
 #### IOS
 ![IOS STYLE](http://open.esandcloud.com/index.php/s/GUYKKqsADNOD9uY/download)
 
-## 其他信息
-1. 完整接入文档：[https://esandinfo.yuque.com/books/share/ba12bf8a-aead-48d5-ad01-be959670af6f?#](https://esandinfo.yuque.com/books/share/ba12bf8a-aead-48d5-ad01-be959670af6f?#)
-2. 服务器端协议文档：[https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001](https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001)
-3. 后端管理控制台地址: [http://openali.esandcloud.com](http://openali.esandcloud.com)
-4. 技术支持/定制化开发 （定制化开发不收钱）
+## 联系我
+有任何疑问或者问题，可通过如下方式联系我
+
 ```
+瑞德
+
 微信：esand_info
 qq: 3626921591
 电话：13691664797
-邮箱：ruide.li@esandinfo.com
+邮箱：reid.li@foxmail.com
 ```
-![wechatqrcode](http://open.esandcloud.com/index.php/s/Lgxsc4ll9DLHvbR/download)
