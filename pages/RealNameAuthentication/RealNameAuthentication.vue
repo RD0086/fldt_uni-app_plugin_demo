@@ -30,10 +30,13 @@
 <script>
 	import CommUtil from '../../utils/CommUtil.js';
 	let commUtil = new CommUtil.Commutil()
-// TODO 替换成您的APPCODE
-let livingDetection = uni.requireNativePlugin('Esand-LivingDetection');
-// TODO 替换成您自己的APPCODE(切勿泄漏), 如何获取APPCODE,可参考：https://esandinfo.yuque.com/docs/share/13ad611e-b9c3-4cf8-a9a8-fe23a419312e?#
-let APPCODE = 'TODO';
+	let livingDetection = uni.requireNativePlugin('Esand-LivingDetection');
+	// TODO 替换成您自己的APPCODE(切勿泄漏), 如何获取APPCODE,可参考：https://esandinfo.yuque.com/docs/share/13ad611e-b9c3-4cf8-a9a8-fe23a419312e?#
+	let ALIYUN_APPCODE = 'TODO'; // 阿里云网关APPCODE
+
+// 从一砂云接入, 可参考文档： https://esandinfo.yuque.com/yv6e1k/aa4qsg/ghtqp7
+let ES_APPCODE = 'TODO'; // 一砂云网关APPCODE 
+let ES_SECRET_KEY = 'TODL';// 一砂云网关密钥
 export default {
 	data() {
 		return {
@@ -83,16 +86,25 @@ export default {
 				this.msg = '活体检测初始化失败：' + livingDetectResult.msg;
 				return;
 			}
+			
+			// 判断是从一砂云接入还是阿里云接入
+			let serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/rpverify/init";
+			SECRET_KEY = ES_SECRET_KEY;
+			if (ALIYUN_APPCODE == '' || ALIYUN_APPCODE == 'TODO') {
+				serverURL = 'http://apprpv.market.alicloudapi.com/init';
+				SECRET_KEY = ALIYUN_APPCODE;
+			}
+			
 			let that = this;
 			/**
 			 * 2. 请求阿里云初始化接口获取token（为了保护APPCODE,次端逻辑应该放在服务器端）
 			 * 参考文档：https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001
 			 */
 			uni.request({
-				url: 'http://apprpv.market.alicloudapi.com/init',
+				url: serverURL,
 				method: 'POST',
 				header: {
-					Authorization: 'APPCODE ' + APPCODE,
+					Authorization: 'APPCODE ' + SECRET_KEY,
 					'X-Ca-Nonce': commUtil.randomString(8), // 防重放攻击
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 				},
@@ -125,11 +137,16 @@ export default {
 						 * 4. 请求阿里云获取服务器端活体检测结果（为了保护APPCODE,次端逻辑应该放在服务器端）
 						 * 参考文档：https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001
 						 */
+						serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/rpverify/verify";
+						if (ALIYUN_APPCODE == '' || ALIYUN_APPCODE == 'TODO') {
+							serverURL = 'http://apprpv.market.alicloudapi.com/verify';
+						}
+						
 						uni.request({
 							url: 'http://apprpv.market.alicloudapi.com/verify',
 							method: 'POST',
 							header: {
-								Authorization: 'APPCODE ' + APPCODE,
+								Authorization: 'APPCODE ' + SECRET_KEY,
 								'X-Ca-Nonce': commUtil.randomString(8), // 防重放攻击
 								'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 							},
