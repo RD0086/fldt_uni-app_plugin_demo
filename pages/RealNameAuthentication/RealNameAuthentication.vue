@@ -137,7 +137,7 @@ export default {
 						 * 4. 请求阿里云获取服务器端活体检测结果（为了保护APPCODE,次端逻辑应该放在服务器端）
 						 * 参考文档：https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001
 						 */
-						serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/rpverify/verify";
+						serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=ifaa/ES/sAuth";
 						if (ALIYUN_APPCODE == '' || ALIYUN_APPCODE == 'TODO') {
 							serverURL = 'http://apprpv.market.alicloudapi.com/verify';
 						}
@@ -147,7 +147,7 @@ export default {
 							method: 'POST',
 							header: {
 								Authorization: 'APPCODE ' + SECRET_KEY,
-								'X-Ca-Nonce': commUtil.randomString(8), // 防重放攻击
+								'X-Ca-Nonce': randomString(16), // 防重放攻击
 								'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 							},
 							data: {
@@ -170,6 +170,22 @@ export default {
 					break;
 				}
 			}
+		},
+		/**
+		 * 生成随机字符串
+		 * @param {Object} len 字符串长度
+		 */
+		randomString(len) {
+		　　len = len || 32;
+		　　var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+		　　var maxPos = $chars.length;
+		　　var randomStr = '';
+		　　for (let i = 0; i < len; i++) {
+		　　　　randomStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+		　　}
+			
+			randomStr = randomStr;
+		　　return randomStr;
 		}
 	}
 };
