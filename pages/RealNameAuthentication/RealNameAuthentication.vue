@@ -6,19 +6,21 @@
 		<form @submit="formSubmit">
 			<view class="infos">
 				<view class="title">姓名:</view>
-				<input class="uni-input" name="mCertName" placeholder="请输入姓名" value="" />
+				<input class="uni-input" name="mCertName" placeholder="请输入姓名" value="张三" />
 
 				<view class="title">身份证号:</view>
-				<input class="uni-input" type="idcard" name="mCertNo" placeholder="请输入身份证号" value="" />
+				<input class="uni-input" type="idcard" name="mCertNo" placeholder="请输入身份证号" value="421126200105134227" />
 			</view>
-			<view class="uni-list">
-				<radio-group @change="radioChange">
-					<label class="uni-list-cell uni-list-cell-pd radio-group" v-for="(item, index) in items" :key="item.value">
-						<radio :value="item.value" :checked="index === livingType - 1" style="transform:scale(0.5)" />
-						<view style="display: inline-block;">{{ item.name }}</view>
-					</label>
-				</radio-group>
+			
+			<view class="checkbox-row">
+			  <checkbox-group @change="checkboxChange">
+			    <label class="checkbox-label" v-for="(item, index) in items" :key="item.value">
+			      <checkbox :value="item.value" :checked="isChecked(item.value)" :disabled="disableCheckbox(item.value)" style="transform:scale(0.5)"/>
+			      <div class="checkbox-name">{{item.name}}</div>
+			    </label>
+			  </checkbox-group>
 			</view>
+			
 			<view align="center"><button class="btSubmit" form-type="submit">实人认证</button></view>
 		</form>
 		<div align="center">
@@ -36,10 +38,13 @@
 
 // 从一砂云接入, 可参考文档： https://esandinfo.yuque.com/yv6e1k/aa4qsg/ghtqp7
 let ES_APPCODE = 'TODO'; // 一砂云网关APPCODE 
-let ES_SECRET_KEY = 'TODL';// 一砂云网关密钥
+let ES_SECRET_KEY = 'TODO';// 一砂云网关密钥
+let SECRET_KEY = '';
 export default {
 	data() {
 		return {
+			mCertNo: '4211262000105134227',
+			mCertName:'张三',
 			msg: 'logs',
 			items: [
 				{
@@ -82,6 +87,7 @@ export default {
 			 * }
 			 */
 			let livingDetectResult = livingDetection.verifyInit({ livingType: this.livingType });
+			console.log("初始化返回：" + JSON.stringify(livingDetectResult))
 			if (livingDetectResult.code != 'ELD_SUCCESS') {
 				this.msg = '活体检测初始化失败：' + livingDetectResult.msg;
 				return;
@@ -90,7 +96,7 @@ export default {
 			// 判断是从一砂云接入还是阿里云接入
 			let serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/rpverify/init";
 			SECRET_KEY = ES_SECRET_KEY;
-			if (ALIYUN_APPCODE == '' || ALIYUN_APPCODE == 'TODO') {
+			if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
 				serverURL = 'http://apprpv.market.alicloudapi.com/init';
 				SECRET_KEY = ALIYUN_APPCODE;
 			}
@@ -116,6 +122,7 @@ export default {
 				},
 				success: res => {
 					if (res.data.code != '0000') {
+						console.log("服务器返回：" + JSON.stringify(res))
 						that.msg = '获取token失败：' + res.data.msg;
 						return;
 					}
@@ -138,12 +145,13 @@ export default {
 						 * 参考文档：https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001
 						 */
 						serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/rpverify/verify";
-						if (ALIYUN_APPCODE == '' || ALIYUN_APPCODE == 'TODO') {
+						if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
 							serverURL = 'http://apprpv.market.alicloudapi.com/verify';
+							SECRET_KEY = ALIYUN_APPCODE;
 						}
 						
 						uni.request({
-							url: 'http://apprpv.market.alicloudapi.com/verify',
+							url: serverURL,
 							method: 'POST',
 							header: {
 								Authorization: 'APPCODE ' + SECRET_KEY,
@@ -156,6 +164,7 @@ export default {
 								verifyMsg: livingDetectResult.data
 							},
 							success: res => {
+								console.log("服务器返回：" + JSON.stringify(res))
 								that.msg = JSON.stringify(res.data);
 							}
 						});
@@ -163,15 +172,23 @@ export default {
 				}
 			});
 		},
-		radioChange: function(evt) {
-			for (let i = 0; i < this.items.length; i++) {
-				if (this.items[i].value === evt.target.value) {
-					this.livingType = i + 1;
-					break;
-				}
-			}
+		checkboxChange: function(evt) {
+		    let selectedValues = evt.detail.value;
+		    if (selectedValues.length > 4) {
+		      // 如果选择超过4个，则只保留前4个选择
+		      selectedValues = selectedValues.slice(0, 4);
+		    }
+		    // 更新数据，确保只存储最多4个选择
+		   this.livingType = parseInt(selectedValues.join(''));
+			
+		  },
+		   isChecked: function(value) {
+		      return this.livingType.toString().includes(value);
+		    },
+		    disableCheckbox: function(value) {
+		      return this.livingType.toString().length >= 4 && !this.isChecked(value);
+		    }
 		}
-	}
 };
 </script>
 
@@ -182,7 +199,7 @@ export default {
 }
 
 .infos {
-	margin: 100rpx 80rpx 0rpx 100rpx;
+	margin: 20rpx 80rpx 0rpx 100rpx;
 }
 
 .title {
@@ -193,6 +210,7 @@ export default {
 input {
 	margin-top: 20rpx;
 	margin-bottom: 30rpx;
+	background-color: aliceblue;
 }
 .content {
 	position: absolute;
@@ -213,9 +231,22 @@ label {
 	margin-top: 10rpx;
 }
 
-.radio-group {
-	display: inline-block;
-}
+.checkbox-row {
+   display: flex;
+   flex-wrap: nowrap; /* 禁止换行 */
+  
+ }
+ 
+ .checkbox-label {
+   display: inline-flex;
+   align-items: center;
+   margin-right: 1px;
+ }
+ 
+ .checkbox-name {
+   margin-left: 1px;
+   font-size: 0.9rem;
+ }
 
 textarea {
 	margin-top: 20rpx;

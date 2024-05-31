@@ -3,14 +3,14 @@
  */
 <template>
   <view>
-    <view class="uni-list">
-      <radio-group @change="radioChange">
-        <label class="uni-list-cell uni-list-cell-pd radio-group" v-for="(item, index) in items" :key="item.value">
-          <radio :value="item.value" :checked="index === livingType-1" style="transform:scale(0.5)"/>
-          <view style="display: inline-block;">{{item.name}}</view>
-        </label>
-      </radio-group>
-    </view>
+  <view class="checkbox-row">
+    <checkbox-group @change="checkboxChange">
+      <label class="checkbox-label" v-for="(item, index) in items" :key="item.value">
+        <checkbox :value="item.value" :checked="isChecked(item.value)" :disabled="disableCheckbox(item.value)" style="transform:scale(0.5)"/>
+        <div class="checkbox-name">{{item.name}}</div>
+      </label>
+    </checkbox-group>
+  </view>
     
     <view class="btn-row">
       <button type="primary" class="primary item" @tap="startVerify()">发起活体检测</button>
@@ -27,8 +27,13 @@
 	let commUtil = new CommUtil.Commutil()
 	
   let livingDetection = uni.requireNativePlugin("Esand-LivingDetection")
-  // TODO 替换成您自己的APPCODE(切勿泄漏), 如何获取APPCODE,可参考：https://esandinfo.yuque.com/docs/share/13ad611e-b9c3-4cf8-a9a8-fe23a419312e?#
-  let APPCODE = 'TODO'
+ // TODO 替换成您自己的APPCODE(切勿泄漏), 如何获取APPCODE,可参考：https://esandinfo.yuque.com/docs/share/13ad611e-b9c3-4cf8-a9a8-fe23a419312e?#
+ let ALIYUN_APPCODE = 'TODO'; // 阿里云网关APPCODE
+ 	
+ // 从一砂云接入, 可参考文档： https://esandinfo.yuque.com/yv6e1k/aa4qsg/ghtqp7
+ let ES_APPCODE = 'TODO'; // 一砂云网关APPCODE 
+ let ES_SECRET_KEY = 'TODO';// 一砂云网关密钥
+ let SECRET_KEY = '';
   export default {
     data() {
       return {
@@ -48,9 +53,12 @@
           },{
             value: '5',
             name: '张嘴'
-          }
+          }, {
+		  	value: '6',
+		  	name: '炫彩'
+		  }
         ],
-        livingType: 2 
+        livingType: ''
       }
     },
     methods: {
@@ -72,12 +80,20 @@
          *    "data": "......" -- 执行结果数据
          * }
          */
-        let livingDetectResult = livingDetection.verifyInit({"livingType":this.livingType});
+        let livingDetectResult = livingDetection.verifyInit({"livingType":parseInt(this.livingType)});
 				console.log("初始化返回：" + JSON.stringify(livingDetectResult))
         if (livingDetectResult.code != 'ELD_SUCCESS') {
           this.msg = '活体检测初始化失败：' + livingDetectResult.msg
           return;
         }
+		
+		// 判断是从一砂云接入还是阿里云接入
+		let serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/livingdetect/init";
+		SECRET_KEY = ES_SECRET_KEY;
+		if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
+			serverURL = 'https://efaceid.market.alicloudapi.com/init';
+			SECRET_KEY = ALIYUN_APPCODE;
+		}
         
         let that = this;
         /**
@@ -85,10 +101,10 @@
          * 参考文档：https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001
          */
         uni.request({
-          url: 'https://eface.market.alicloudapi.com/init',
+          url: serverURL,
           method: 'POST',
           header: {
-            'Authorization': 'APPCODE ' + APPCODE,
+            'Authorization': 'APPCODE ' + SECRET_KEY,
             'X-Ca-Nonce': commUtil.randomString(8),  // 防重放攻击
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           },
@@ -121,11 +137,16 @@
                * 4. 请求阿里云获取服务器端活体检测结果（为了保护APPCODE,次端逻辑应该放在服务器端）
                * 参考文档：https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001
                */
+              serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/livingdetect/verify";
+              if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
+              	serverURL = 'https://efaceid.market.alicloudapi.com/verify';
+              	SECRET_KEY = ALIYUN_APPCODE;
+              }
               uni.request({
-                url: 'https://eface.market.alicloudapi.com/verify',
+                url: serverURL,
                 method: 'POST',
                 header: {
-                  'Authorization': 'APPCODE ' + APPCODE,
+                  'Authorization': 'APPCODE ' + SECRET_KEY,
                   'X-Ca-Nonce': commUtil.randomString(8),  // 防重放攻击
                   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                 },
@@ -142,14 +163,22 @@
           },
         });
       },
-      radioChange: function(evt) {
-        for (let i = 0; i < this.items.length; i++) {
-          if (this.items[i].value === evt.target.value) {
-            this.livingType = i+1;
-            break;
-          }
-        }
-      }
+	checkboxChange: function(evt) {
+	    let selectedValues = evt.detail.value;
+	    if (selectedValues.length > 4) {
+	      // 如果选择超过4个，则只保留前4个选择
+	      selectedValues = selectedValues.slice(0, 4);
+	    }
+	    // 更新数据，确保只存储最多4个选择
+	   this.livingType = parseInt(selectedValues.join(''));
+		
+	  },
+	   isChecked: function(value) {
+	      return this.livingType.toString().includes(value);
+	    },
+	    disableCheckbox: function(value) {
+	      return this.livingType.toString().length >= 4 && !this.isChecked(value);
+	    }
     }
   }
 </script>
@@ -173,10 +202,28 @@
     margin-top: 10rpx;
   }
   
-  .radio-group{
-    display: inline-block;  
-  }
-
+ .checkbox-row {
+   display: flex;
+   flex-wrap: nowrap; /* 禁止换行 */
+   margin-top: 20rpx;
+  
+ }
+ 
+ .checkbox-label {
+   display: inline-flex;
+   align-items: center;
+   margin-right: 1px;
+ }
+ 
+ .checkbox-name {
+   margin-left: 1px;
+   font-size: 0.9rem;
+ }
+ .btn-row{
+	 margin-top: 40rpx;
+ }
+ 
+ 
   textarea {
     margin-top: 20rpx;
     height: 800rpx;
