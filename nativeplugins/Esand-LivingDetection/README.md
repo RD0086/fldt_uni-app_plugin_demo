@@ -15,6 +15,9 @@ LivingDetectionModule.Init();
  * @param options(JSONObject), 包括如下字段：
  *     livingType：认证类型  1：远近，2：眨眼，3：摇头，4: 点头，5:张嘴，6: 炫彩
  *                  支持多动作，如传入12表示先做远近活体，后做眨眼活体，一次最多支持4组动作
+ *     keyType: string, 密钥类型 (留空即可)
+ *     isAutoUploadVerifyMsg: boolean, 是否自动上传verifyMsg (留空即可)
+ *     navigate: boolean, 是否显示导航条 
  *     textColor：界面样式-字体颜色
  *     takeMultiImg: boolean , true : 获取结果时候返回多张照片，默认为false
  *     isRecordVideo: boolean , 是否录制视频，默认为false，如果设置为true, 那么将会在认证结束的时候将会返回视频存储的本地绝对路径
@@ -24,7 +27,7 @@ LivingDetectionModule.Init();
  *     progressEndGradient：界面样式-进度条渐变结束颜色
  *     backGroundColor：界面样式-页面背景颜色
  *     circleBackWidth：界面样式-进度条宽度
- *     language: 界面显示的语言（不分大小写），“CN”:中文，“JP”: 日文，"KR": 韩文
+ *     language: 界面显示的语言（不分大小写），“CN”:中文，“TCN”： 繁体中文， “JP”: 日文，"KR": 韩文， “EN”: 英文
  *     visitedStepBorderDotColor：多动作导航的边框颜色, 如 #FFC0CB
  *     visitedStepFillDotColor： 完成步骤点的填充颜色, 如 #FFC0CB
  *     nextStepBorderDotColor： 下一步骤点的填充颜色, 如 #FFC0CB
