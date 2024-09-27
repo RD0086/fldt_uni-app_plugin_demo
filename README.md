@@ -7,8 +7,9 @@ Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，
 ![DEMO](imgs/demo.gif)
 
 
+- H5 体验DEMO链接 ： https://dev.esandcloud.com/h5demo/esand/living
 - 插件地址：https://ext.dcloud.net.cn/plugin?id=2357
-- 接入文档：https://esandinfo.yuque.com/yv6e1k/aa4qsg/agg77l 
+- 接入文档：https://esandinfo.yuque.com/yv6e1k/aa4qsg/agg77l
 
 ## 联系我
 有任何疑问或者问题，可通过如下方式联系我
