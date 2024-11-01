@@ -15,14 +15,14 @@ Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，
 有任何疑问或者问题，可通过如下方式联系我
 
 ```
-瑞德
+`Wechat Number:` esand_info </br>
+`QQ Number:` 3626921591 </br>
+`Phone Number:` +8613691664797</br>
+`Email:` reid.li@foxmail.com</br>
+`Telegram:` [@R90000000](https://t.me/R90000000)</br>
 
-微信：esand_info
-qq: 3626921591
-电话：13691664797
-邮箱：reid.li@foxmail.com
 ```
 
-扫我加微信
+Wechat QR CODE :
 
 ![QRCODE](imgs/qrcode.jpeg)
