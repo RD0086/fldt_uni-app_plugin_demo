@@ -11,11 +11,11 @@
       </label>
     </checkbox-group>
   </view>
-    
+
     <view class="btn-row">
       <button type="primary" class="primary item" @tap="startVerify()">发起活体检测</button>
     </view>
-    
+
     <div align="center">
       <textarea :value="msg"/>
     </div>
@@ -25,13 +25,13 @@
 <script>
 	import CommUtil from '../../utils/CommUtil.js';
 	let commUtil = new CommUtil.Commutil()
-	
+
   let livingDetection = uni.requireNativePlugin("Esand-LivingDetection")
  // TODO 替换成您自己的APPCODE(切勿泄漏), 如何获取APPCODE,可参考：https://esandinfo.yuque.com/docs/share/13ad611e-b9c3-4cf8-a9a8-fe23a419312e?#
  let ALIYUN_APPCODE = 'TODO'; // 阿里云网关APPCODE
- 	
+
  // 从一砂云接入, 可参考文档： https://esandinfo.yuque.com/yv6e1k/aa4qsg/ghtqp7
- let ES_APPCODE = 'TODO'; // 一砂云网关APPCODE 
+ let ES_APPCODE = 'TODO'; // 一砂云网关APPCODE
  let ES_SECRET_KEY = 'TODO';// 一砂云网关密钥
  let SECRET_KEY = '';
   export default {
@@ -68,7 +68,7 @@
 				if (livingDetection == undefined) {
 					console.error("请检查是否运行为自定义基座，并且把活体检测打包进基座了")
 				}
-				
+
         /**
          * 1. 认证初始化
          * @param options(JSONObject), 包括如下字段：
@@ -86,15 +86,15 @@
           this.msg = '活体检测初始化失败：' + livingDetectResult.msg
           return;
         }
-		
+
 		// 判断是从一砂云接入还是阿里云接入
 		let serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/livingdetect/init";
 		SECRET_KEY = ES_SECRET_KEY;
 		if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
-			serverURL = 'https://efaceid.market.alicloudapi.com/init';
+			serverURL = 'https://eface.market.alicloudapi.com/init';
 			SECRET_KEY = ALIYUN_APPCODE;
 		}
-        
+
         let that = this;
         /**
          * 2. 请求阿里云初始化接口获取token（为了保护APPCODE,次端逻辑应该放在服务器端）
@@ -118,7 +118,7 @@
               that.msg = '获取token失败：'+res.data.msg
               return;
             }
-            
+
             /**
              * 3. 发起活体检测
              */
@@ -132,14 +132,14 @@
                *    "token": "" -- 本次认证token
                * }
                */
-              
+
               /**
                * 4. 请求阿里云获取服务器端活体检测结果（为了保护APPCODE,次端逻辑应该放在服务器端）
                * 参考文档：https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001
                */
               serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/livingdetect/verify";
               if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
-              	serverURL = 'https://efaceid.market.alicloudapi.com/verify';
+              	serverURL = 'https://eface.market.alicloudapi.com/verify';
               	SECRET_KEY = ALIYUN_APPCODE;
               }
               uni.request({
@@ -171,7 +171,7 @@
 	    }
 	    // 更新数据，确保只存储最多4个选择
 	   this.livingType = parseInt(selectedValues.join(''));
-		
+
 	  },
 	   isChecked: function(value) {
 	      return this.livingType.toString().includes(value);
@@ -201,20 +201,20 @@
     display: block;
     margin-top: 10rpx;
   }
-  
+
  .checkbox-row {
    display: flex;
    flex-wrap: nowrap; /* 禁止换行 */
    margin-top: 20rpx;
-  
+
  }
- 
+
  .checkbox-label {
    display: inline-flex;
    align-items: center;
    margin-right: 1px;
  }
- 
+
  .checkbox-name {
    margin-left: 1px;
    font-size: 0.9rem;
@@ -222,8 +222,8 @@
  .btn-row{
 	 margin-top: 40rpx;
  }
- 
- 
+
+
   textarea {
     margin-top: 20rpx;
     height: 800rpx;
