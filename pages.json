@@ -29,6 +29,14 @@
 			    "navigationBarTitleText": "",
 			    "enablePullDownRefresh": false
 			} 
+		},
+		{
+			"path": "pages/will/will",
+			"style" :
+			{
+			    "navigationBarTitleText": "",
+			    "enablePullDownRefresh": false
+			} 
 		}
 		
     ],
