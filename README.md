@@ -6,6 +6,8 @@ Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，
 
 ![DEMO](imgs/demo.gif)
 
+![WILL](imgs/will.gif)
+
 - H5 体验DEMO链接 ：https://dev.esandcloud.com/h5demo/esand/living
 - 意愿核验H5版体验链接：https://dev.esandcloud.com/h5demo/esand/faceVoiceVerify/index
 - 插件地址：https://ext.dcloud.net.cn/plugin?id=2357
