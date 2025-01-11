@@ -58,7 +58,7 @@
 		  	name: '炫彩'
 		  }
         ],
-        livingType: ''
+        livingType: '2'
       }
     },
     methods: {
