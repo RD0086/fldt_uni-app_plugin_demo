@@ -27,7 +27,7 @@
 				url: '/pages/BrushFaceAuthentication/BrushFaceAuthentication'
 				})
 		    },
-			goToLiveness() {
+			goToWill() {
 				 // 跳转意愿核验页面
 				uni.navigateTo({
 				url: '/pages/will/will'
