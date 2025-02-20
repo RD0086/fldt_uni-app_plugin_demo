@@ -33,6 +33,7 @@
  // 从一砂云接入, 可参考文档： https://esandinfo.yuque.com/yv6e1k/aa4qsg/ghtqp7
  let ES_APPCODE = 'TODO'; // 一砂云网关APPCODE
  let ES_SECRET_KEY = 'TODO';// 一砂云网关密钥
+
  let SECRET_KEY = '';
   export default {
     data() {
@@ -53,9 +54,13 @@
           },{
             value: '5',
             name: '张嘴'
-          }, {
+          },
+		  {
 		  	value: '6',
 		  	name: '炫彩'
+		  },{
+		  	value: '8',
+		  	name: '静默活体'
 		  }
         ],
         livingType: '2'
@@ -68,11 +73,11 @@
 				if (livingDetection == undefined) {
 					console.error("请检查是否运行为自定义基座，并且把活体检测打包进基座了")
 				}
-
+		// let a = uni.env.USER_DATA_PATH ;
         /**
          * 1. 认证初始化
          * @param options(JSONObject), 包括如下字段：
-         *     livingType：认证类型  1：远近，2：眨眼，3：摇头，4: 点头，5:张嘴
+         *     livingType：认证类型  1：远近，2：眨眼，3：摇头，4: 点头，5:张嘴，6：炫彩，7：静默活体
          * @return livingDetectResult 对象包括如下几个字段
          * {
          *    "code": ”ELD_SUCCESS“, -- ELD_SUCCESS：成功，ELD_FAILED：失败，ELD_PARAME_ERROR：参数异常，ELD_EXCEPTION：发生异常，ELD_UNSUPPORT：不支持此活体类型

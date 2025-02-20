@@ -64,6 +64,9 @@
 			{
 				value: '6',
 				name: '炫彩'
+			},{
+		  	value: '8',
+		  	name: '静默活体'
 			}
 	      ],
 	      livingType: 2 ,
@@ -118,7 +121,6 @@
 	 					that.msg = '获取token失败：' + res.data.msg;
 	 					return;
 	 				}
-	 
 	 				/**
 	 				 * 3. 发起活体检测
 	 				 */
@@ -141,7 +143,6 @@
 	 						serverURL = 'https://efaceid.market.alicloudapi.com/verify';
 	 						SECRET_KEY = ALIYUN_APPCODE;
 	 					}
-	 					
 	 					uni.request({
 	 						url: serverURL,
 	 						method: 'POST',

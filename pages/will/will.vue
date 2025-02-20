@@ -22,8 +22,8 @@
  let ALIYUN_APPCODE = 'TODO'; // 阿里云网关APPCODE
 
  // 从一砂云接入, 可参考文档： https://esandinfo.yuque.com/yv6e1k/aa4qsg/ghtqp7
- let ES_APPCODE = 'TODO'; // 一砂云网关APPCODE
- let ES_SECRET_KEY = 'TODO';// 一砂云网关密钥
+ let ES_APPCODE = 'd2808c1338ce01f3e3efdb486f9effb9'; // 一砂云网关APPCODE
+ let ES_SECRET_KEY = 'aIXyBKENxsMs6AAKJzUDzO7KhZLxnhjS';// 一砂云网关密钥
  let SECRET_KEY = '';
   export default {
     data() {
@@ -63,8 +63,10 @@
           data: {
             //初始化接口返回参数 （如果没有自己的业务ID, 填入随机字符串即可）
             'bizId': commUtil.randomString(16),
-						'idName': '翠花', // 姓名 (填入正确的身份证姓名，实名核验完成后才到意愿核验)
-						'idNumber': '1025591988666254299', // 身份证号
+						'idName': '于清玮', // 姓名 (填入正确的身份证姓名，实名核验完成后才到意愿核验)
+						'idNumber': '210104199805121442', // 身份证号
+						// 'idName': '翠花', // 姓名 (填入正确的身份证姓名，实名核验完成后才到意愿核验)
+						// 'idNumber': '1025591988666254299', // 身份证号
 						/**
 						 * 人脸活体检测组合，如：13 为先远近检测，后摇头检测 : 
 									1：远近，
@@ -72,12 +74,13 @@
 									3：摇头，
 									4: 点头，
 									6：炫彩
+									8:静默活体
 						 */
-						'fldtType': '12',
+						'fldtType': '2',
 						/**
 						 * 意愿确认描述文字 (前端页面将会按照顺序提示用户回答)
 						 */
-						'willStandText': '["本人同意办理号码开户业务","本人知情以下号码开户，知晓出售、出租、转让等方式提供电话卡供他人使用的法律风险。"]',
+						'willStandText': '["1234"]',
 						/**
 						 * 回答答案通过的阈值，取值范围为 60-100 , 默认值为  85 , 此参数只对跟读模式有效。
 						 */
@@ -131,6 +134,8 @@
                   that.msg = JSON.stringify(res.data);
                 },
               });
+			  
+			  console.log("test"+JSON.stringify(result));
             });
           },
         });

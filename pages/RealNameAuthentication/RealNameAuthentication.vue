@@ -70,6 +70,9 @@ export default {
 				{
 					value: '6',
 					name: '炫彩'
+				},{
+					value: '8',
+					name: '静默活体'
 				}
 			],
 			livingType: 2
