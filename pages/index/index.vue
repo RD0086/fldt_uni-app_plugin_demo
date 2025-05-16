@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<button @click="goToLiveness">活体检测</button>
-		<button @click="goToIdentityVerification">实名认证</button>
 		<button @click="goToFaceRecognition">刷脸认证</button> 
 	</div> 
 </template>
@@ -15,24 +14,13 @@
 				url: '/pages/FacialLivenessDetection/FacialLivenessDetection'
 				})
 			},
-			 goToIdentityVerification() {
-			    // 跳转到实名认证页面
-			    uni.navigateTo({
-			    url: '/pages/RealNameAuthentication/RealNameAuthentication'
-			    }) 
-			},
 			 goToFaceRecognition() {
 				 // 跳转到刷脸认证页面
 				uni.navigateTo({
 				url: '/pages/BrushFaceAuthentication/BrushFaceAuthentication'
 				})
 		    },
-			goToWill() {
-				 // 跳转意愿核验页面
-				uni.navigateTo({
-				url: '/pages/will/will'
-				})
-			},
+
 		}	
 	}
  </script>

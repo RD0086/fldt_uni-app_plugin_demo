@@ -58,9 +58,6 @@
 		  {
 		  	value: '6',
 		  	name: '炫彩'
-		  },{
-		  	value: '8',
-		  	name: '静默活体'
 		  }
         ],
         livingType: '2'
@@ -77,7 +74,7 @@
         /**
          * 1. 认证初始化
          * @param options(JSONObject), 包括如下字段：
-         *     livingType：认证类型  1：远近，2：眨眼，3：摇头，4: 点头，5:张嘴，6：炫彩，7：静默活体
+         *     livingType：认证类型  1：远近，2：眨眼，3：摇头，4: 点头，5:张嘴，6：炫彩
          * @return livingDetectResult 对象包括如下几个字段
          * {
          *    "code": ”ELD_SUCCESS“, -- ELD_SUCCESS：成功，ELD_FAILED：失败，ELD_PARAME_ERROR：参数异常，ELD_EXCEPTION：发生异常，ELD_UNSUPPORT：不支持此活体类型

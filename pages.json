@@ -6,14 +6,6 @@
 				"navigationBarTitleText": "uni-app"
 			}
 		},
-	    {
-            "path" : "pages/RealNameAuthentication/RealNameAuthentication",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            } 
-        },
 		{
 			"path" :"pages/BrushFaceAuthentication/BrushFaceAuthentication",
 			"style" :
@@ -24,14 +16,6 @@
 		},
 		{
 			"path": "pages/FacialLivenessDetection/FacialLivenessDetection",
-			"style" :
-			{
-			    "navigationBarTitleText": "",
-			    "enablePullDownRefresh": false
-			} 
-		},
-		{
-			"path": "pages/will/will",
 			"style" :
 			{
 			    "navigationBarTitleText": "",
