@@ -91,7 +91,7 @@
 	 		let serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/faceContrast/init";
 	 		SECRET_KEY = ES_SECRET_KEY;
 	 		if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
-	 			serverURL = 'https://apprpv.market.alicloudapi.com/init';
+	 			serverURL = 'https://efaceid.market.alicloudapi.com/init';
 	 			SECRET_KEY = ALIYUN_APPCODE;
 	 		}
 	 		
@@ -137,7 +137,7 @@
 	 					 */
 	 					serverURL = "https://edis.esandcloud.com/gateways?APPCODE=" + ES_APPCODE + "&ACTION=livingdetection/faceContrast/verify";
 	 					if (ES_APPCODE == '' || ES_APPCODE == 'TODO') {
-	 						serverURL = 'https://apprpv.market.alicloudapi.com/verify';
+	 						serverURL = 'https://efaceid.market.alicloudapi.com/verify';
 	 						SECRET_KEY = ALIYUN_APPCODE;
 	 					}
 	 					uni.request({
