@@ -1,8 +1,9 @@
 <template>
 	<div>
 		<button @click="goToLiveness">活体检测</button>
-		<button @click="goToFaceRecognition">刷脸认证</button> 
-	</div> 
+		<button @click="goToFaceRecognition">刷脸认证</button>
+		<button @click="goToRPAuth">实人</button>
+		</div>
 </template>
  
  <script>
@@ -20,6 +21,12 @@
 				url: '/pages/BrushFaceAuthentication/BrushFaceAuthentication'
 				})
 		    },
+			 goToRPAuth() {
+				 // 跳转到实人认证页面
+				uni.navigateTo({
+				url: '/pages/RealPersonAuth/RealPersonAuth'
+				})
+			},
 
 		}	
 	}

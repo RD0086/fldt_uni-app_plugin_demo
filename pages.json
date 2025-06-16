@@ -21,6 +21,14 @@
 			    "navigationBarTitleText": "",
 			    "enablePullDownRefresh": false
 			} 
+		},
+		{
+			"path": "pages/RealPersonAuth/RealPersonAuth",
+			"style" :
+			{
+			    "navigationBarTitleText": "",
+			    "enablePullDownRefresh": false
+			} 
 		}
 		
     ],
