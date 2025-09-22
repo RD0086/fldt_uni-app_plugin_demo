@@ -119,7 +119,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		i2F5881paNPDunUPaVGV6bR8iSc=
+		SEMzG2TNzJ/2zA+Dffss1F07vsk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -132,10 +132,6 @@
 		<key>Shader.vsh</key>
 		<data>
 		uf37AQCD1wqw9OSNE3jj4DciZ1Y=
-		</data>
-		<key>zlibLamdmark.jpeg</key>
-		<data>
-		/e3rm7VWBsZjdqiUabavnPptpZ4=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -470,17 +466,6 @@
 			<key>hash2</key>
 			<data>
 			YeGLGj3WwBXTEoDOvTipQAsLwuy0eqmj2VXOWy4EHFc=
-			</data>
-		</dict>
-		<key>zlibLamdmark.jpeg</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/e3rm7VWBsZjdqiUabavnPptpZ4=
-			</data>
-			<key>hash2</key>
-			<data>
-			kWULPp5BeVkC6SlOq1LrzYwXyPtciEWAkf6RihDG4cs=
 			</data>
 		</dict>
 	</dict>
