@@ -4,9 +4,11 @@ Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，
 
 演示如下：
 
-![DEMO](imgs/demo.gif)
+![WILL](./imgs/will.gif)
 
-![WILL](imgs/will.gif)
+
+![DEMO](./imgs/demo.gif)
+
 
 - H5 体验DEMO链接 ：https://dev.esandcloud.com/h5demo/esand/living
 - 意愿核验H5版体验链接：https://dev.esandcloud.com/h5demo/esand/faceVoiceVerify/index
@@ -16,14 +18,11 @@ Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，
 ## 联系我
 有任何疑问或者问题，可通过如下方式联系我
 
-```
 `Wechat Number:` esand_info </br>
 `QQ Number:` 3626921591 </br>
 `Phone Number:` +8613691664797</br>
 `Email:` reid.li@foxmail.com</br>
 `Telegram:` [@R90000000](https://t.me/R90000000)</br>
-
-```
 
 Wechat QR CODE :
 
