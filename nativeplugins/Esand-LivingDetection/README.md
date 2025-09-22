@@ -2,6 +2,7 @@
 ![DEMO](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/fldt/demo.gif?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=2111946097&Signature=0NfltyR72r81CJ40c7TFj8oQOLs%3D)
 
 
+![WILL](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/fldt/will.gif?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=1794525118&Signature=%2Bg2Wc%2FqDBzrxi%2B7l3r5%2BfKQqnRo%3D)
 ## 插件API接口说明
 
 #### android 调用初始化
@@ -69,10 +70,10 @@ LivingDetectionModule.startLivingDetect(options, callback);
 
 ## 页面样式修改
 #### Android
-![ANDRIOID STYLE](http://open.esandcloud.com/index.php/s/D44uyRlrzr3TQqQ/download)
+![ANDRIOID STYLE](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/fldt/ldt_style.png?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=1794525279&Signature=cnQPMndXSsNSysuL0Ef%2F3HC1fJA%3D)
 
 #### IOS
-![IOS STYLE](http://open.esandcloud.com/index.php/s/GUYKKqsADNOD9uY/download)
+![IOS STYLE](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/fldt/ldt_style_ios.png?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=1794525308&Signature=qb1xTM7u2JaVcJZHUx3Hb4PIJ2k%3D)
 
 
 
