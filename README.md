@@ -4,7 +4,7 @@ Android/IOS活体检测 (眨眼，摇头，点头，张嘴，远近，炫彩)，
 
 演示如下：
 
-![WILL](./imgs/will.gif)
+![WILL](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/fldt/will.gif?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=1794525118&Signature=%2Bg2Wc%2FqDBzrxi%2B7l3r5%2BfKQqnRo%3D)
 
 
 ![DEMO](./imgs/demo.gif)
